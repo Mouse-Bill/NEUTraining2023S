@@ -20,7 +20,8 @@ const onQSearch = () => {
     console.log(answerUser, 'answerUser');
 
     let params = {
-        answerUser: answerUser
+        answerUser: answerUser,
+        questionnaireId: questionnaireId
     };
     $.ajax({
         url: API_BASE_URL + '/queryAnswerSheetInfo',
