@@ -1,17 +1,18 @@
 let questionnaireName = '';
 let currentPage = 1;
 let answerUserName = '';
+let questionnaireId = '';
 
 onload = () => {
     $('#headerUsername').text($util.getItem('userInfo')[0].username);
     $('#headerDivB').text('答卷详情');
 
-    let questionnaireId = $util.getPageParam('questionnaireId');
+    questionnaireId = $util.getPageParam('questionnaireId');
     console.log(questionnaireId, 'questionnaireId');
 
-    questionnaireName = getQuestionnaireName(questionnaireId);
+    getQuestionnaireName(questionnaireId);
     console.log(questionnaireName, 'questionnaireName');
-    fetchQuestionnaireList(questionnaireId, currentPage);
+    // fetchQuestionnaireList(questionnaireId, currentPage);
 };
 
 const onQSearch = () => {
@@ -128,6 +129,7 @@ const getQuestionnaireName = (id) => {
         success(res) {
             console.log("res", res);
             questionnaireName = res.data[0].questionnaireName;
+            fetchQuestionnaireList(questionnaireId, currentPage);
         }
     });
 };
